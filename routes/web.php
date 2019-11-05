@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@root')->name('index');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+#新建项目相关路由
+Route::post('projects','ProjectsController@store')->name('projects.store');

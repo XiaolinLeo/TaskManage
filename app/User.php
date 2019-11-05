@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projects(){
+        //一个用户有多个项目
+        //user->project
+        return $this->hasMany('App\Project');
+    }
 }
