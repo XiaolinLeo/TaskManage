@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', 'HomeController@root')->name('index');
-
 
 Auth::routes();
 
 
-#新建项目相关路由
-Route::post('projects','ProjectsController@store')->name('projects.store');
+//新建项目相关路由
+
+Route::get('/', 'ProjectsController@index')->name('index');
+Route::resource('projects','ProjectsController');
+Route::resource('tasks','TasksController');
+Route::post('tasks/{task}/check','TasksController@check')->name('tasks.check');
+//Route::post('projects','ProjectsController@store')->name('projects.store');
+//Route::delete('projects/{project}','ProjectsController@destroy')->name('projects.destroy');
+//Route::post('projects/{project}','ProjectsController@update')->name('projects.update');

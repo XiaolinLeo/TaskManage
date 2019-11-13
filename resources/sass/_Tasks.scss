@@ -1,0 +1,9 @@
+.task-list .task-li{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    .task-status .task-status-form{
+        display: inline-block;
+    }
+
+}
