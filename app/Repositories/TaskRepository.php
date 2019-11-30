@@ -51,6 +51,10 @@ class TaskRepository
         ]);
     }
 
+    public function all(){
+        return auth()->user()->tasks;
+    }
+
     public function destroy($id)
     {
         $task = $this->find($id);
@@ -67,6 +71,10 @@ class TaskRepository
         return auth()->user()->tasks()->where('completion', 1)->paginate(5);
     }
 
+    public function total(){
+        return request()->user()->tasks()->count();
+    }
+
     public function todosCount(){
         return auth()->user()->tasks()->where('completion', 0)->count();
     }
@@ -74,9 +82,7 @@ class TaskRepository
         return auth()->user()->tasks()->where('completion', 1)->count();
     }
 
-    public function alltasks(){
-        return auth()->user()->tasks()->count();
-    }
+
 
 
 }

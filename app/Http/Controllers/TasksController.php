@@ -19,6 +19,7 @@ class TasksController extends Controller
     {
         $this->repo = $repo;
         $this->middleware('auth');
+
     }
 
 
@@ -27,7 +28,14 @@ class TasksController extends Controller
         $todos = $this->repo->todos();
         $dones = $this->repo->dones();
 //        $projects = request()->user()->projects()->get();
-        return view('tasks.index',compact('todos','dones'));
+        return view('tasks.index', compact('todos', 'dones'));
+    }
+
+    public function search()
+    {
+        return response()->json([
+            'tasks' => $this->repo->all()
+        ], 200);
     }
 
     public function create()
@@ -43,10 +51,10 @@ class TasksController extends Controller
     }
 
 
-    public function show()
+    public function show(Task $task)
     {
-//        $tasks = request()->projects()->tasks()->get();
-//        return view('project.show',compact('tasks'));
+        $steps = $task->steps;
+        return view('tasks.show', compact('task', 'steps'));
     }
 
     public function check($id)
@@ -56,7 +64,6 @@ class TasksController extends Controller
 
         return back();
     }
-
 
 
     /**
@@ -80,7 +87,7 @@ class TasksController extends Controller
     public function update(UpdateTaskRequest $request, $id)
     {
 
-        $this->repo->update($request,$id);
+        $this->repo->update($request, $id);
         return back();
     }
 

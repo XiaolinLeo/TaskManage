@@ -18,11 +18,14 @@ class TaskCountComposer
 
     public function compose(View $view)
     {
-        $view->with([
-            'alltasks' => $this->task->alltasks(),
-            'todosCount' => $this->task->todosCount(),
-            'donesCount' => $this->task->donesCount()
-        ]);
+        if(auth()->user()){
+            $view->with([
+                'total' => $this->task->total(),
+                'todosCount' => $this->task->todosCount(),
+                'donesCount' => $this->task->donesCount()
+            ]);
+        }
+
     }
 
 

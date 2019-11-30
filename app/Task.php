@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Step;
 class Task extends Model
 {
     protected $fillable = [
@@ -11,6 +11,10 @@ class Task extends Model
     ];
     public function project(){
         return $this->belongsTo('App\Project');
+    }
+
+    public function steps(){
+        return $this->hasMany(Step::class);
     }
 
 }

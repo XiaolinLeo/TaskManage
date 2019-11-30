@@ -48,7 +48,8 @@
                             <li class="list-group-item task-li">
                                 <span class="task-name">
                                     <span class="badge badge-secondary mr-3">{{$task->updated_at->diffForHumans()}}</span>
-                                    {{$task->name}}</span>
+                                    <a href="{{route('tasks.show',[$task->id])}}">{{$task->name}}</a>
+                                </span>
 
                                 <span class="task-status">
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"

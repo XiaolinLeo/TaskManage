@@ -30,9 +30,14 @@
                     @if(Auth::check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('tasks.index')}}">所有任务</a>
+
                         </li>
+                        <search></search>
                     @endif
                 </ul>
+
+
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -71,20 +76,18 @@
             </div>
         </div>
     </nav>
-
     <div class="container" style="margin-top: 10px;">
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
         @yield('content')
     </div>
 </div>
+<script src="{{ asset('js/app.js') }}"></script>
 @yield('customJS')
-@auth
+@if(Auth::check())
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <span >总共任务{{$alltasks}} 完成{{$todosCount}} 未完成{{$donesCount}}</span>
+        <span >总共任务{{$total}} 完成{{$todosCount}} 未完成{{$donesCount}}</span>
     </div>
 </footer>
-    @endauth
+@endif
 </body>
 </html>
